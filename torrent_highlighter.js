@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blutopia Torrent Highlighter
 // @version      1.0
-// @description  Upgrade torrent pages on Blutopia with various effects
+// @description  Enchances torrent pages on Blutopia with various effects
 // @author       Anil, daylight
 // @match        https://blutopia.cc/*
 // @icon         https://blutopia.cc/favicon.ico
