@@ -5,8 +5,8 @@
 // @author       RAGE1337, daylight
 // @match        https://blutopia.cc/torrents/*
 // @icon         https://blutopia.cc/favicon.ico
-// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/keybinds.js
-// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/keybinds.js
+// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/keybinds.user.js
+// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/keybinds.user.js
 // @supportURL   https://github.com/cloudskies/daylight-blu-scripts/issues
 // @grant        none
 // ==/UserScript==

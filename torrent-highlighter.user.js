@@ -5,8 +5,8 @@
 // @author       Anil, daylight
 // @match        https://blutopia.cc/*
 // @icon         https://blutopia.cc/favicon.ico
-// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent_highlighter.js
-// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent_highlighter.js
+// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent-highlighter.user.js
+// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent-highlighter.user.js
 // @supportURL   https://github.com/cloudskies/daylight-blu-scripts/issues
 // @grant        none
 // @run-at       document-idle

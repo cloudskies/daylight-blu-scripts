@@ -5,8 +5,8 @@
 // @author       Katsu, daylight
 // @match        https://blutopia.cc/*
 // @icon         https://blutopia.cc/favicon.ico
-// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/redirect.js
-// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/redirect.js
+// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/redirect.user.js
+// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/redirect.user.js
 // @supportURL   https://github.com/cloudskies/daylight-blu-scripts/issues
 // @grant        none
 // ==/UserScript==

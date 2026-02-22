@@ -5,8 +5,8 @@
 // @author       DrTaru, daylight
 // @match        https://blutopia.cc/*
 // @icon         https://blutopia.cc/favicon.ico
-// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph_hider.js
-// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph_hider.js
+// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph-hider.user.js
+// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph-hider.user.js
 // @supportURL   https://github.com/cloudskies/daylight-blu-scripts/issues
 // @grant        none
 // @run-at       document-end
