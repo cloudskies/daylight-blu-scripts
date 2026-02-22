@@ -1,5 +1,11 @@
-# daylight's scripts for Blutopia
+# daylight's scripts for Blutopia!
 
-Scripts I use for Blutopia!
+Scripts I use for Blutopia. Some are forked from the forums to fix or improve features, and some are reformatted for better readability. Enjoy!
 
-Some of those are forked from the forums to either fix or improve stuff, and some is just reformatted to my likings. Enjoy! :)
+## nord.css ([source](https://blutopia.cc/forums/topics/5951))
+
+Just reformatted, nothing else.
+
+1. Go into Settings -> External CSS Stylesheet
+2. Paste the following URL:
+`https://cloudskies.github.io/daylight-blu-scripts/nord.css`
