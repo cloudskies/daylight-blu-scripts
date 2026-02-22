@@ -4,6 +4,10 @@
 // @description  Toggles the visibility of Xenomorph on Blutopia Chatbox
 // @author       DrTaru, daylight
 // @match        https://blutopia.cc/*
+// @icon         https://blutopia.cc/favicon.ico
+// @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph_hider.js
+// @downloadURL  https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph_hider.js
+// @supportURL   https://github.com/cloudskies/daylight-blu-scripts/issues
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
@@ -15,7 +19,6 @@
     style.id = 'bothider-custom-css';
     style.innerHTML = `
         .bh-inactive { display: none !important; }
-
         #bothider-wrap { display: flex; align-items: center; padding: 0 10px; border-right: 1px solid rgba(255,255,255,0.1); height: 100%; }
         .bh-toggle { display: flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; }
         .bh-toggle input { cursor: pointer; margin: 0; }
@@ -25,7 +28,6 @@
 
     function processMessages() {
         const isEnabled = localStorage.getItem('bh_enabled') !== 'false';
-
         const targets = document.querySelectorAll('li, article.chatbox-message');
 
         targets.forEach(el => {
