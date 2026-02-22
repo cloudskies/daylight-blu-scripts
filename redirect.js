@@ -2,7 +2,7 @@
 // @name         Blutopia .xyz to .cc Redirect
 // @version      1.0
 // @description  Redirect blutopia.xyz to blutopia.cc
-// @author       daylight
+// @author       Katsu, daylight
 // @match        https://blutopia.cc/*
 // @icon         https://blutopia.cc/favicon.ico
 // @updateURL    https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent_highlighter.js
