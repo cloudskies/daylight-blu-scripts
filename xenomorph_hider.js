@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Blutopia CB Xenomorph Hider
+// @name         Blutopia Chatbox Xenomorph Hider
 // @version      1.0
 // @description  Toggles the visibility of Xenomorph messages on Blutopia chatbox
 // @author       DrTaru, daylight
