@@ -12,7 +12,7 @@
 // @run-at       document-end
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     const style = document.createElement('style');
