@@ -233,7 +233,7 @@
     const NAUGHTY_KEY = "giveaway-naughty-list";
     const naughtySet = new Set(
         JSON.parse(localStorage.getItem(NAUGHTY_KEY) || "[]")
-        .map(n => n.toLowerCase()) // store lowercase for case-insensitive match
+            .map(n => n.toLowerCase()) // store lowercase for case-insensitive match
     );
     function saveNaughty() {
         localStorage.setItem(NAUGHTY_KEY, JSON.stringify([...naughtySet]));
@@ -365,8 +365,8 @@
             ['startNum', '1'],
             ['endNum', '50']
         ]
-    .map(
-        ([id, val]) => `
+            .map(
+                ([id, val]) => `
               <p class="form__group" style="width:20%;">
                 <input
                   class="form__text"
@@ -383,8 +383,8 @@
                 </label>
               </p>`
             )
-    .join('')
-    }
+            .join('')
+        }
       </div>
 
       <!-- Giveaway length / reminders / winners row -->
@@ -1745,8 +1745,8 @@
 
         // Final fallback: any non-empty span inside the user tag.
         const anySpan = Array.from(msgNode.querySelectorAll('.user-tag__link span'))
-        .map(s => (s.textContent || "").trim())
-        .find(t => t && t !== "Unknown");
+            .map(s => (s.textContent || "").trim())
+            .find(t => t && t !== "Unknown");
         if (anySpan) return anySpan;
 
         return "";
@@ -1798,7 +1798,7 @@
         const existing = numberEntries.get(author);
         if (existing !== undefined) {
             const repeatMessage =
-                  `Sorry [color=#d85e27]${safeAuthor}[/color], but [color=#32cd53]you[/color] already entered with number [color=#DC3D1D][b]${existing}[/b][/color]!`;
+                `Sorry [color=#d85e27]${safeAuthor}[/color], but [color=#32cd53]you[/color] already entered with number [color=#DC3D1D][b]${existing}[/b][/color]!`;
             if (canSendUserFeedback(author, "entry-repeat")) sendMessage(repeatMessage);
             return;
         }
@@ -1807,15 +1807,15 @@
         if (otherAuthor && otherAuthor !== author) {
             const safeOther = sanitizeNick(otherAuthor);
             const repeatMessage =
-                  `🚫 Sorry [color=#d85e27]${safeAuthor}[/color], but [color=#32cd53]${safeOther}[/color] already entered with number [color=#DC3D1D][b]${number}[/b][/color]!` +
-                  suggestion;
+                `🚫 Sorry [color=#d85e27]${safeAuthor}[/color], but [color=#32cd53]${safeOther}[/color] already entered with number [color=#DC3D1D][b]${number}[/b][/color]!` +
+                suggestion;
             if (canSendUserFeedback(author, "entry-repeat")) sendMessage(repeatMessage);
             return;
         }
 
         if (number < giveawayData.startNum || number > giveawayData.endNum) {
             const outOfBoundsMessage =
-                  `🚫 Sorry [color=#d85e27]${safeAuthor}[/color], but the number [color=#DC3D1D][b]${number}[/b][/color] is outside of the given range! Enter a number between [color=#DC3D1D][b]${giveawayData.startNum}[/b] and [b]${giveawayData.endNum}[/b][/color]!`;
+                `🚫 Sorry [color=#d85e27]${safeAuthor}[/color], but the number [color=#DC3D1D][b]${number}[/b][/color] is outside of the given range! Enter a number between [color=#DC3D1D][b]${giveawayData.startNum}[/b] and [b]${giveawayData.endNum}[/b][/color]!`;
             if (canSendUserFeedback(author, "entry-range")) sendMessage(outOfBoundsMessage);
             return;
         }
@@ -1830,10 +1830,10 @@
             const rigHint = rigNote("(entry logged under [b]highly suspicious[/b] conditions) 😈");
 
             const msg =
-                  `[color=#d85e27]${safeAuthor}[/color] has entered with ` +
-                  `the number [color=#DC3D1D][b]${number}[/b][/color]! ` +
-                  `Time remaining: [b][color=#1DDC5D]${timeLeftStr}[/color][/b].` +
-                  rigHint;
+                `[color=#d85e27]${safeAuthor}[/color] has entered with ` +
+                `the number [color=#DC3D1D][b]${number}[/b][/color]! ` +
+                `Time remaining: [b][color=#1DDC5D]${timeLeftStr}[/color][/b].` +
+                rigHint;
             sendMessage(msg);
         }
     }
@@ -1960,11 +1960,11 @@
 
         return m && links.length >= 2
             ? {
-            gifter: links[0].textContent.trim(),
-            recipient: links[1].textContent.trim(),
-            amount: parseFloat(m[1])
-        }
-        : {};
+                gifter: links[0].textContent.trim(),
+                recipient: links[1].textContent.trim(),
+                amount: parseFloat(m[1])
+            }
+            : {};
     }
 
     class SponsorTracker {
@@ -2094,9 +2094,9 @@
             }, {});
 
             const entries = Object.entries(grouped)
-            .map(([name, amt]) => ({ name, amt: Number(amt) || 0 }))
-            .filter(e => e.name && e.amt > 0)
-            .sort((a, b) => b.amt - a.amt);
+                .map(([name, amt]) => ({ name, amt: Number(amt) || 0 }))
+                .filter(e => e.name && e.amt > 0)
+                .sort((a, b) => b.amt - a.amt);
 
             const sponsorCount = entries.length;
             const deltaTotalNum = entries.reduce((s, e) => s + e.amt, 0);
@@ -2128,8 +2128,8 @@
             }
 
             const parts = shown.map(e =>
-                                    `[color=#1DDC5D][b]${e.name}[/b][/color] ` +
-                                    `([color=#DC3D1D][b]${e.amt.toLocaleString()}[/b][/color])`
+                `[color=#1DDC5D][b]${e.name}[/b][/color] ` +
+                `([color=#DC3D1D][b]${e.amt.toLocaleString()}[/b][/color])`
             );
 
             const othersCount = Math.max(0, sponsorCount - shown.length);
@@ -2167,7 +2167,7 @@
         // Early-ignore window for *entry* commands right after giveaway starts.
         // This ensures auto-join scripts are dropped before naughty/cooldown logic.
         const isEntryCommand =
-              command === "random" || command === "luckye"; // add more here later if you introduce other entry commands
+            command === "random" || command === "luckye"; // add more here later if you introduce other entry commands
 
         if (isEntryCommand && isWithinEntryIgnoreWindow()) {
             return;
@@ -2254,8 +2254,8 @@
         // Per-command cooldown (prevents identical output spam)
         let repeatBlocked = false;
         const cmd = (opts && typeof opts === "object" && opts.command != null)
-        ? String(opts.command).trim().toLowerCase()
-        : "";
+            ? String(opts.command).trim().toLowerCase()
+            : "";
 
         if (cmd) {
             const cd = Number(REPEAT_COMMAND_COOLDOWNS_MS[cmd]) || 0;
@@ -2366,9 +2366,9 @@
 
             // Sort by entry number (ascending)
             const list = Array.from(numberEntries.entries())
-            .sort(([, numA], [, numB]) => numA - numB)
-            .map(([user, num]) =>
-                 `[color=#d85e27][b]${sanitizeNick(user)}[/b][/color]: [b]${num}[/b]`
+                .sort(([, numA], [, numB]) => numA - numB)
+                .map(([user, num]) =>
+                    `[color=#d85e27][b]${sanitizeNick(user)}[/b][/color]: [b]${num}[/b]`
                 );
 
             sendMessage(
@@ -2444,9 +2444,9 @@
             }
 
             const out = rows.map((u, i) =>
-                                 `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
-                                 `[color=#1DDC5D]${fmtBON(u.wins)}W[/color] • ` +
-                                 `[color=#ffc00a]${fmtBON(u.totalWon)} BON[/color]`
+                `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
+                `[color=#1DDC5D]${fmtBON(u.wins)}W[/color] • ` +
+                `[color=#ffc00a]${fmtBON(u.totalWon)} BON[/color]`
             );
 
             sendMessage(`[b]🏆 Top winners: ${out.join(" | ")}[/b]`);
@@ -2465,9 +2465,9 @@
             }
 
             const out = rows.map((u, i) =>
-                                 `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
-                                 `[color=#ffc00a]${fmtBON(u.totalWon)} BON[/color] • ` +
-                                 `[color=#1DDC5D]${fmtBON(u.wins)}W[/color]`
+                `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
+                `[color=#ffc00a]${fmtBON(u.totalWon)} BON[/color] • ` +
+                `[color=#1DDC5D]${fmtBON(u.wins)}W[/color]`
             );
 
             sendMessage(`[b]💰 Most BON won: ${out.join(" | ")}[/b]`);
@@ -2486,9 +2486,9 @@
             }
 
             const out = rows.map((u, i) =>
-                                 `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
-                                 `[color=#ffc00a]${fmtBON(u.sponsoredTotal)} BON[/color] • ` +
-                                 `[color=#1DDC5D]${fmtBON(u.sponsorCount)}x[/color]`
+                `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
+                `[color=#ffc00a]${fmtBON(u.sponsoredTotal)} BON[/color] • ` +
+                `[color=#1DDC5D]${fmtBON(u.sponsorCount)}x[/color]`
             );
 
             sendMessage(`[b]💸 Top all-time sponsors: ${out.join(" | ")}[/b]`);
@@ -2554,9 +2554,9 @@
 
 
             const top = all
-            .filter(g => getAmt(g) > 0)
-            .sort((a, b) => (getAmt(b) - getAmt(a)) || (getEndedAt(b) - getEndedAt(a)))
-            .slice(0, n);
+                .filter(g => getAmt(g) > 0)
+                .sort((a, b) => (getAmt(b) - getAmt(a)) || (getEndedAt(b) - getEndedAt(a)))
+                .slice(0, n);
 
             if (!top.length) {
                 sendMessage("[b]No giveaway history saved yet.[/b]");
@@ -2899,7 +2899,7 @@
 
                 case "list":
                     sendMessage(naughtySet.size
-                                ? `[color=#FFDE59]Naughty list: [b]${fmtUserList([...naughtySet])}[/b][/color]`
+                        ? `[color=#FFDE59]Naughty list: [b]${fmtUserList([...naughtySet])}[/b][/color]`
                         : "Naughty list is empty.");
                     break;
 
@@ -2962,8 +2962,8 @@
         }
 
         const helpText = "Commands are " + COMMANDS.map(({ name, setting }) =>
-                                                        fmt(name, setting && GENERAL_SETTINGS[setting])
-                                                       ).join(" - ") + ".";
+            fmt(name, setting && GENERAL_SETTINGS[setting])
+        ).join(" - ") + ".";
 
         sendMessage(helpText);
     }
@@ -3085,16 +3085,16 @@
                 ]));
 
                 const safe = sponsorNames
-                .map(name => ({
-                    name,
-                    amount: giveawayData.sponsorContribs?.[name] || 0
-                }))
-                .sort((a, b) =>
-                      (b.amount - a.amount) ||
-                      a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-                     )
-                .map(({ name, amount }) =>
-                     `[color=#1DDC5D][b]${sanitizeNick(name)}[/b][/color] ([color=#ffc00a][b]${amount.toLocaleString()} BON[/b][/color])`
+                    .map(name => ({
+                        name,
+                        amount: giveawayData.sponsorContribs?.[name] || 0
+                    }))
+                    .sort((a, b) =>
+                        (b.amount - a.amount) ||
+                        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+                    )
+                    .map(({ name, amount }) =>
+                        `[color=#1DDC5D][b]${sanitizeNick(name)}[/b][/color] ([color=#ffc00a][b]${amount.toLocaleString()} BON[/b][/color])`
                     );
 
                 const sponsorsMessage = `Thank you to all the sponsors! 🥳 ` + safe.join(", ");
@@ -3103,13 +3103,13 @@
 
             // 2) build and sort entries by closeness to winningNumber
             const entries = Array.from(numberEntries.entries())
-            .map(([author, guess], idx) => ({
-                author,
-                guess,
-                gap: Math.abs(guess - giveawayData.winningNumber),
-                order: idx
-            }))
-            .sort((a, b) => a.gap - b.gap || a.order - b.order);
+                .map(([author, guess], idx) => ({
+                    author,
+                    guess,
+                    gap: Math.abs(guess - giveawayData.winningNumber),
+                    order: idx
+                }))
+                .sort((a, b) => a.gap - b.gap || a.order - b.order);
 
             // Detect and announce ties
             const ties = entries.filter(e => e.gap === entries[0].gap);
@@ -3129,8 +3129,8 @@
 
             // raw amounts, floored to integers
             let allocated = winners.map((_, i) =>
-                                        Math.floor(giveawayData.amount * weights[i] / totalWeight)
-                                       );
+                Math.floor(giveawayData.amount * weights[i] / totalWeight)
+            );
             // fix any rounding‐leftover by giving it to 1st place
             const sumAllocated = allocated.reduce((s, x) => s + x, 0);
             const leftover = giveawayData.amount - sumAllocated;
@@ -3157,8 +3157,8 @@
             const tail = Array.from({ length: need }, (_, i) => {
                 const n = i + podium.length + 1;
                 const s = (n % 10 === 1 && n % 100 !== 11) ? "st" :
-                (n % 10 === 2 && n % 100 !== 12) ? "nd" :
-                (n % 10 === 3 && n % 100 !== 13) ? "rd" : "th";
+                    (n % 10 === 2 && n % 100 !== 12) ? "nd" :
+                        (n % 10 === 3 && n % 100 !== 13) ? "rd" : "th";
                 return `${n}${s}`; // "6th" … "15th"
             });
 
@@ -3169,10 +3169,10 @@
             const rigTag = rigNote(" (Rigged mode was active, but winners were still chosen [b]fairly[/b]… allegedly.) 👀");
 
             const header =
-                  `🏆 The winning number was [b][color=#1DDC5D]${winNum}[/color][/b]. ` +
-                  `Congratulations to` +
-                  (winners.length === 1
-                   ? ` `
+                `🏆 The winning number was [b][color=#1DDC5D]${winNum}[/color][/b]. ` +
+                `Congratulations to` +
+                (winners.length === 1
+                    ? ` `
                     : ` these [b][color=#5DE2E7]${winners.length} winners[/color][/b]! `
                 );
 
@@ -3684,14 +3684,14 @@
 
         const rigLine = rigNote("(Rigged mode is currently enabled, but the math is [b]definitely[/b] still legit) 😉");
         const msg =
-              `There is an ongoing giveaway for ` +
-              `[b][color=#ffc00a]${Number(cleanPotString(giveawayData.amount)).toLocaleString()} BON[/color][/b]. ` +
-              `Up to [b][color=#5DE2E7]${giveawayData.winnersNum} ${giveawayData.winnersNum === 1 ? 'winner' : 'winners'}[/color][/b] will be selected. ` +
-              `Time left: [b][color=#1DDC5D]${parseTime(giveawayData.timeLeft * 1000)}[/color][/b]. ` +
-              `To enter, submit a whole number [b]between [color=#DC3D1D]${giveawayData.startNum} and ${giveawayData.endNum}[/color] inclusive.[/b] ` +
-              `[b][color=#5DE2E7]${giveawayData.customMessage} [/color][/b]\n` +
-              `✨[b][color=#FB4F4F]Gifting BON to the host will add to the pot![/color][/b]✨` +
-              rigLine;
+            `There is an ongoing giveaway for ` +
+            `[b][color=#ffc00a]${Number(cleanPotString(giveawayData.amount)).toLocaleString()} BON[/color][/b]. ` +
+            `Up to [b][color=#5DE2E7]${giveawayData.winnersNum} ${giveawayData.winnersNum === 1 ? 'winner' : 'winners'}[/color][/b] will be selected. ` +
+            `Time left: [b][color=#1DDC5D]${parseTime(giveawayData.timeLeft * 1000)}[/color][/b]. ` +
+            `To enter, submit a whole number [b]between [color=#DC3D1D]${giveawayData.startNum} and ${giveawayData.endNum}[/color] inclusive.[/b] ` +
+            `[b][color=#5DE2E7]${giveawayData.customMessage} [/color][/b]\n` +
+            `✨[b][color=#FB4F4F]Gifting BON to the host will add to the pot![/color][/b]✨` +
+            rigLine;
         sendMessage(msg);
     }
 
@@ -3718,7 +3718,7 @@
         // Try to infer /users/<slug>/gifts from any visible "/users/" link
         let giftUrl = null;
         const userLink = Array.from(document.querySelectorAll('a[href*="/users/"]'))
-        .find(a => a.offsetParent !== null);
+            .find(a => a.offsetParent !== null);
 
         if (userLink) {
             try {
@@ -3738,7 +3738,7 @@
         // If we can't resolve the HTTP endpoint or token, fall back immediately
         if (!csrfToken || !giftUrl) {
             const fallbackCmd = safeMessage
-            ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
+                ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
                 : `/gift ${safeRecipient} ${safeAmount}`;
             sendMessage(fallbackCmd);
             return;
@@ -3759,19 +3759,19 @@
                 // If the HTTP request fails or returns non-2xx, use /gift as a backup.
                 if (!resp || resp.status >= 400) {
                     const fallbackCmd = safeMessage
-                    ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
+                        ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
                         : `/gift ${safeRecipient} ${safeAmount}`;
                     sendMessage(fallbackCmd);
                 }
             }).catch(function () {
                 const fallbackCmd = safeMessage
-                ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
+                    ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
                     : `/gift ${safeRecipient} ${safeAmount}`;
                 sendMessage(fallbackCmd);
             });
         } catch (e) {
             const fallbackCmd = safeMessage
-            ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
+                ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
                 : `/gift ${safeRecipient} ${safeAmount}`;
             sendMessage(fallbackCmd);
         }
@@ -3780,7 +3780,7 @@
     async function sendMessage(messageStr) {
         // Obfuscate "giveaway" in all messages except the intro announcement
         if (!(messageStr.includes("I am hosting a giveaway for") &&
-              messageStr.includes("To enter, submit a whole number"))) {
+            messageStr.includes("To enter, submit a whole number"))) {
             messageStr = obfuscateGiveaway(messageStr);
         }
 
@@ -3890,7 +3890,7 @@
             if (giveawayData.timeLeft === 0) return endGiveaway();
             if (numberEntries.size === giveawayData.totalEntries) {
                 sendMessage(`All [b][color=#ffc00a]${giveawayData.totalEntries}[/color][/b] slot(s) filled! Ending early with ` +
-                            `[b][color=#1DDC5D]${parseTime(msLeft)}[/color][/b] remaining!`);
+                    `[b][color=#1DDC5D]${parseTime(msLeft)}[/color][/b] remaining!`);
                 return endGiveaway();
             }
 
@@ -4310,9 +4310,9 @@
     function getLeaderboardRows(sorter, topN, filterFn) {
         const stats = getStatsForRead();
         const users = Object.values(stats.users || {})
-        .filter(u => u && typeof u === "object")
-        .filter(u => (filterFn ? filterFn(u) : true))
-        .sort(sorter);
+            .filter(u => u && typeof u === "object")
+            .filter(u => (filterFn ? filterFn(u) : true))
+            .sort(sorter);
 
         return users.slice(0, topN);
     }
@@ -4380,7 +4380,7 @@
         rigToggleInput.checked = !!riggedMode;
         rigToggleInput.title = riggedMode
             ? "Rigged mode is ON. Click to disable."
-        : "Rigged mode is OFF. Click to enable.";
+            : "Rigged mode is OFF. Click to enable.";
     }
 
     function fmtUserList(arr) {
@@ -4420,8 +4420,8 @@
 
         // Unique + sorted taken list
         const taken = Array.from(new Set(numberEntries.values()))
-        .filter(n => Number.isFinite(n))
-        .sort((a, b) => a - b);
+            .filter(n => Number.isFinite(n))
+            .sort((a, b) => a - b);
 
         let bestLen = 0;
         let bestPick = null;
@@ -4512,8 +4512,8 @@
         if (numReminders < 1) return [];
         const interval = totalMinutes / (numReminders + 1);
         return Array.from({ length: numReminders }, (_, i) =>
-                          Math.round((totalMinutes - (i + 1) * interval) * 60_000)
-                         );
+            Math.round((totalMinutes - (i + 1) * interval) * 60_000)
+        );
     }
 
     function shouldSendReminder(giveawayData) {
@@ -4646,8 +4646,8 @@
 
         // CSRF token
         const xsrfToken = document.querySelector('meta[name=csrf-token]')?.content ||
-              window?.CSRF_TOKEN ||
-              (document.cookie.match(/XSRF-TOKEN=([^;]+)/)?.[1] || "");
+            window?.CSRF_TOKEN ||
+            (document.cookie.match(/XSRF-TOKEN=([^;]+)/)?.[1] || "");
         OT_CSRF_TOKEN = xsrfToken ? decodeURIComponent(xsrfToken) : "";
 
         if (DEBUG_SETTINGS.verify_cacheChatContext) {
