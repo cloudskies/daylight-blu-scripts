@@ -4,26 +4,39 @@ Scripts I use for Blutopia. Some are forked from the forums to fix or improve fe
 
 ## keybinds.js ([install](https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/keybinds.user.js))
 
-Adds custom keyboard shortcuts for faster site navigation.
+Adds custom keyboard shortcuts (like PTP).
+
+Currently:
+S - IMDb
+L - Letterboxd
+M - TMDb
+X - Blu-ray.com
+
+D - NZBGeek search
+T - YouTube trailer search
+
+E - Edit torrent (needs perms)
+
+B - Return back to torrents
 
 1. Install a userscript manager (Tampermonkey or Violentmonkey).
 2. Click the **(install)** link above
 
 ## redirect.js ([install](https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/redirect.user.js))
 
-Automatically redirects specific pages or trackers to your preferred views.
+Automatically redirects blutopia.xyz to blutopia.cc
 
 1. Install a userscript manager (Tampermonkey or Violentmonkey).
 2. Click the **(install)** link above
 
-## torrent_highlighter.js ([install](https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent_highlighter.user.js))
+## torrent-highlighter.js ([install](https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/torrent-highlighter.user.js))
 
 Highlights specific torrent types (e.g., Freeleech, Double Seed, Internal) for better visibility.
 
 1. Install a userscript manager (Tampermonkey or Violentmonkey).
 2. Click the **(install)** link above
 
-## xenomorph_hider.js ([install](https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph_hider.user.js))
+## xenomorph-hider.js ([install](https://raw.githubusercontent.com/cloudskies/daylight-blu-scripts/refs/heads/main/xenomorph-hider.user.js))
 
 Hides Xenomorph-XX121 messages in the chatbox.
 
