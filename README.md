@@ -1,4 +1,4 @@
-# daylight's scripts for Blutopia!
+# daylight's scripts for Blutopia
 
 Scripts I use for Blutopia!
 
