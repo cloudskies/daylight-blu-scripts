@@ -2,7 +2,7 @@
 // @name         Blutopia CB Xenomorph Hider
 // @version      1.0
 // @description  Toggles the visibility of Xenomorph on Blutopia Chatbox
-// @author       drtaru, daylight
+// @author       DrTaru, daylight
 // @match        https://blutopia.cc/*
 // @grant        none
 // @run-at       document-end
