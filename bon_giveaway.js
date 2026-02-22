@@ -36,7 +36,7 @@
 // @ruckus612 - fixed BON gift bug
 // @ZukoXZuko - added formatting to the giveaway menu
 
-(function() {
+(function () {
     'use strict';
 
     // ───────────────────────────────────────────────────────────
@@ -68,7 +68,7 @@
         top: 8000,
         most: 8000,
         largest: 8000
-    });const RIG_DENY_COOLDOWN_MS = 10000; // 10s per-user cooldown for funny !rig/!unrig denial messages
+    }); const RIG_DENY_COOLDOWN_MS = 10000; // 10s per-user cooldown for funny !rig/!unrig denial messages
     const MAX_WINNERS = 30; // central location to update max allowable number of winners
     const MAX_REMINDERS = 6; //maximum number of reminders allowed
 
@@ -179,7 +179,7 @@
     const chatboxID = "chatbox__messages-create";
 
     // only run the cooldown/spam‑detection logic on available commands
-    const baseCommands = ["time", "entries", "help", "commands", "bon", "range", "gift","random", "number", "free", "lucky", "luckye", "rig", "unrig", "stats", "top", "most", "sponsors", "unlucky", "largest",];
+    const baseCommands = ["time", "entries", "help", "commands", "bon", "range", "gift", "random", "number", "free", "lucky", "luckye", "rig", "unrig", "stats", "top", "most", "sponsors", "unlucky", "largest",];
     const hostCommands = ["addtime", "removetime", "reminder", "addbon", "end", "winners", "naughty"];
     const uploadCxExtras = ["ruckus", "ick", "corigins", "lejosh", "suckur", "bloom", "dawg", "greglechin"];
     const validCommands = new Set([
@@ -278,20 +278,20 @@
             };
 
             return {
-                name:        fetch("name") || "BON Giveaway",
-                updateURL:   fetch("updateURL") || "https://openuserjs.org/meta/Nums/Blutopia_BON_Giveaway.meta.js",
-                version:     fetch("version") || "0.0.0"
+                name: fetch("name") || "BON Giveaway",
+                updateURL: fetch("updateURL") || "https://openuserjs.org/meta/Nums/Blutopia_BON_Giveaway.meta.js",
+                version: fetch("version") || "0.0.0"
             };
         } catch (e) {
             /* Last-ditch – never crash the script */
-            return { name:"BON Giveaway", version:"0.0.0" };
+            return { name: "BON Giveaway", version: "0.0.0" };
         }
     })();
 
     const {
-        name:        SCRIPT_NAME,
-        updateURL:   SCRIPT_UPDATE_URL,
-        version:     SCRIPT_VERSION
+        name: SCRIPT_NAME,
+        updateURL: SCRIPT_UPDATE_URL,
+        version: SCRIPT_VERSION
     } = META;
 
     /* — persistent “out-of-date” flag — */
@@ -361,11 +361,10 @@
       </p>
 
       <div class="panel__body flex-row" style="justify-content:center; gap:20px;">
-        ${
-    [
-        ['startNum', '1'],
-        ['endNum', '50']
-    ]
+        ${[
+            ['startNum', '1'],
+            ['endNum', '50']
+        ]
     .map(
         ([id, val]) => `
               <p class="form__group" style="width:20%;">
@@ -383,7 +382,7 @@
                   ${id === 'startNum' ? 'Start #' : 'End #'}
                 </label>
               </p>`
-    )
+            )
     .join('')
     }
       </div>
@@ -489,11 +488,11 @@
       <button type="button" id="toggleAllButton" class="form__button form__button--filled">
         Toggle all
       </button><br>
-      ${['Random','Lucky','Free','Entry Replies'].map(label => `
+      ${['Random', 'Lucky', 'Free', 'Entry Replies'].map(label => `
         <p style="display:inline-block;width:150px;">${label}:</p>
         <input
           type="checkbox"
-          id="${label.toLowerCase().replace(/ /g,'')}Toggle"
+          id="${label.toLowerCase().replace(/ /g, '')}Toggle"
           style="width:15px;height:15px;cursor:pointer;"
           checked
         ><br>`).join('')}
@@ -1150,7 +1149,7 @@
         });
 
         const cmdMenu = document.getElementById('giveaway_commands_menu');
-        commandsBtn.addEventListener('click', (e)=>{
+        commandsBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // don’t trigger outside-click
 
             /* -------- close the Settings panel if it’s showing -------- */
@@ -1189,7 +1188,7 @@
 
         GM_xmlhttpRequest({
             method: 'GET',
-            url:    SCRIPT_UPDATE_URL,
+            url: SCRIPT_UPDATE_URL,
             onload: res => {
                 if (res.status !== 200) return console.warn('update-check HTTP', res.status);
                 const m = res.responseText.match(/@version\s+([0-9.]+)/);
@@ -1203,8 +1202,8 @@
                     localStorage.removeItem(UPDATE_KEY); // ✅ up-to-date
                 }
             },
-            onerror:  err => console.error('update-check failed', err),
-            ontimeout:() => console.error('update-check timed out')
+            onerror: err => console.error('update-check failed', err),
+            ontimeout: () => console.error('update-check timed out')
         });
 
         localStorage.setItem(`${SCRIPT_ID}-lastCheck`, String(now));
@@ -1215,7 +1214,7 @@
     // Utility function to compare semantic versions
     function isNewer(remote, local) {
         const r = remote.split('.').map(Number);
-        const l = local .split('.').map(Number);
+        const l = local.split('.').map(Number);
         const len = Math.max(r.length, l.length);
         for (let i = 0; i < len; i++) {
             const a = r[i] || 0;
@@ -1323,10 +1322,10 @@
             winnersNum,
             customMessage: customMessageInput.value,
             hostAdded: amountInt,
-            reminderSchedule : schedule,
-            reminderNum      : schedule.length,
-            reminderFreqSec  : cadenceSec, // <- kept for legacy helpers
-            nextReminderSec  : cadenceSec, // <- ditto (first reminder ETA)
+            reminderSchedule: schedule,
+            reminderNum: schedule.length,
+            reminderFreqSec: cadenceSec, // <- kept for legacy helpers
+            nextReminderSec: cadenceSec, // <- ditto (first reminder ETA)
             sponsorContribs: {},
             sponsors: [],
         };
@@ -1343,7 +1342,7 @@
             giveawayData.winningNumber = getRandomInt(giveawayData.startNum, giveawayData.endNum);
 
             window.onbeforeunload = function (e) {
-                try { flushStatsNow(); } catch {}
+                try { flushStatsNow(); } catch { }
                 e.preventDefault();
                 e.returnValue = "";
                 return "";
@@ -1440,7 +1439,7 @@
     function stopGiveaway() {
         startButton.disabled = true; //prevents stop button from being clicked once giveaway has ended
         // Flush any pending stats writes before tearing down
-        try { flushStatsNow(); } catch {}
+        try { flushStatsNow(); } catch { }
 
         // ── timers ──
         if (giveawayData?.countdownTimerID) clearInterval(giveawayData.countdownTimerID);
@@ -1493,187 +1492,187 @@
     // ───────────────────────────────────────────────────────────
     // SECTION 7: Chat Observation + Parsing
     // ───────────────────────────────────────────────────────────
-// Parse added chat nodes immediately for instant UI feedback.
-// (Frame-based batching was removed due to noticeable response delay.)
-function parseAddedNodeImmediate(node) {
-    if (!node) return;
-
-    // Some frameworks append a DocumentFragment; expand it in-order.
-    if (node.nodeType === 11) {
-        const children = node.childNodes ? Array.from(node.childNodes) : [];
-        for (const child of children) {
-            parseAddedNodeImmediate(child);
-        }
-        return;
-    }
-
-    // If we were given a container, parse any message nodes inside it in-order.
-    if (node.nodeType === 1) {
-        const el = /** @type {Element} */ (node);
-
-        if (el.classList && el.classList.contains('chatbox-message')) {
-            parseMessage(el);
-            return;
-        }
-
-        const descendants = el.querySelectorAll ? el.querySelectorAll('.chatbox-message') : null;
-        if (descendants && descendants.length) {
-            for (const msg of descendants) {
-                parseMessage(msg);
-            }
-            return;
-        }
-    }
-
-    parseMessage(node);
-}
-
-
-// Micro-batch parsing: coalesce all added nodes within a single MutationObserver callback
-// and parse messages immediately (no frame delay), preserving perceived responsiveness while
-// reducing redundant DOM traversals during chat bursts.
-function parseAddedNodesMicroBatch(mutations) {
-    const messages = [];
-    const seen = new WeakSet();
-
-    function collect(node) {
+    // Parse added chat nodes immediately for instant UI feedback.
+    // (Frame-based batching was removed due to noticeable response delay.)
+    function parseAddedNodeImmediate(node) {
         if (!node) return;
 
-        // DocumentFragment
-        if (node.nodeType === 11 && node.childNodes) {
-            for (const child of node.childNodes) collect(child);
-            return;
-        }
-
-        // Element only
-        if (node.nodeType !== 1) return;
-
-        // Direct message
-        if (node.matches && node.matches('.chatbox-message')) {
-            if (!seen.has(node)) {
-                seen.add(node);
-                messages.push(node);
+        // Some frameworks append a DocumentFragment; expand it in-order.
+        if (node.nodeType === 11) {
+            const children = node.childNodes ? Array.from(node.childNodes) : [];
+            for (const child of children) {
+                parseAddedNodeImmediate(child);
             }
             return;
         }
 
-        // Container: collect any message descendants
-        if (node.querySelectorAll) {
-            const descendants = node.querySelectorAll('.chatbox-message');
+        // If we were given a container, parse any message nodes inside it in-order.
+        if (node.nodeType === 1) {
+            const el = /** @type {Element} */ (node);
+
+            if (el.classList && el.classList.contains('chatbox-message')) {
+                parseMessage(el);
+                return;
+            }
+
+            const descendants = el.querySelectorAll ? el.querySelectorAll('.chatbox-message') : null;
             if (descendants && descendants.length) {
                 for (const msg of descendants) {
-                    if (!seen.has(msg)) {
-                        seen.add(msg);
-                        messages.push(msg);
+                    parseMessage(msg);
+                }
+                return;
+            }
+        }
+
+        parseMessage(node);
+    }
+
+
+    // Micro-batch parsing: coalesce all added nodes within a single MutationObserver callback
+    // and parse messages immediately (no frame delay), preserving perceived responsiveness while
+    // reducing redundant DOM traversals during chat bursts.
+    function parseAddedNodesMicroBatch(mutations) {
+        const messages = [];
+        const seen = new WeakSet();
+
+        function collect(node) {
+            if (!node) return;
+
+            // DocumentFragment
+            if (node.nodeType === 11 && node.childNodes) {
+                for (const child of node.childNodes) collect(child);
+                return;
+            }
+
+            // Element only
+            if (node.nodeType !== 1) return;
+
+            // Direct message
+            if (node.matches && node.matches('.chatbox-message')) {
+                if (!seen.has(node)) {
+                    seen.add(node);
+                    messages.push(node);
+                }
+                return;
+            }
+
+            // Container: collect any message descendants
+            if (node.querySelectorAll) {
+                const descendants = node.querySelectorAll('.chatbox-message');
+                if (descendants && descendants.length) {
+                    for (const msg of descendants) {
+                        if (!seen.has(msg)) {
+                            seen.add(msg);
+                            messages.push(msg);
+                        }
                     }
                 }
             }
         }
-    }
 
-    for (const mutation of mutations) {
-        for (const node of mutation.addedNodes) {
-            collect(node);
-        }
-    }
-
-    for (const msg of messages) {
-        parseMessage(msg);
-    }
-}
-
-function addObserver(giveawayData) {
-    observer = new MutationObserver(mutations => {
-        // Micro-batch within the same callback: no rAF delay, still immediate.
-        parseAddedNodesMicroBatch(mutations);
-    });
-    startObserver();
-}
-
-function startObserver() {
-    const messageList = document.querySelector(".chatroom__messages");
-    if (messageList) {
-        observer.observe(messageList, { childList: true });
-    }
-}
-
-
-// Capture a stable user-tag HTML for the entries table.
-// Some sites render the username via Alpine (x-text/x-show) after the node is inserted,
-// so grabbing userTag.outerHTML too early can produce icon-only markup.
-function escapeHTML(str) {
-    try {
-        return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#39;");
-    } catch {
-        return "";
-    }
-}
-
-// Build a user-tag that renders correctly outside of the chatbox CSS context.
-// Using raw userTag.outerHTML can produce "icon-only" output in the entries table
-// because some UNIT3D themes hide username text unless inside .chatbox-message.
-// This function inlines the important styles and always injects the username text.
-function captureFancyNameTag(messageNode, author) {
-    try {
-        const userTag = messageNode?.querySelector?.("address.user-tag, .user-tag");
-        if (!userTag) return "";
-
-        const userLink = userTag.querySelector("a.user-tag__link, a");
-        if (!userLink) return "";
-
-        const nameText = sanitizeNick(author || userLink.textContent || "").trim();
-        if (!nameText) return "";
-
-        // Preserve group icon / tag background
-        const tagStyles = getComputedStyle(userTag);
-        const bgImage = tagStyles.backgroundImage;
-        const bgRepeat = tagStyles.backgroundRepeat;
-        const bgPosition = tagStyles.backgroundPosition;
-        const bgSize = tagStyles.backgroundSize;
-
-        let backgroundStyle = "";
-        if (bgImage && bgImage !== "none") {
-            // bgImage looks like: url("...") — pull out the URL safely
-            const m = /url\(["']?(.*?)["']?\)/.exec(bgImage);
-            const url = m ? m[1] : "";
-            if (url) {
-                backgroundStyle =
-                    `background-image: url('${url}'); ` +
-                    `background-repeat: ${bgRepeat}; ` +
-                    `background-position: ${bgPosition}; ` +
-                    `background-size: ${bgSize}; `;
+        for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+                collect(node);
             }
         }
 
-        // Inline link color so it renders in the entries table
-        const linkStyles = getComputedStyle(userLink);
-        const color = linkStyles.color || "";
-
-        const wrapperStyle = `${backgroundStyle} padding-left: 20px; display: inline-block;`;
-        const linkStyle = `${color ? `color: ${color}; ` : ""}font-size: inherit;`;
-
-        // Preserve classes & title for staff detection (isAdmin uses title)
-        const extraClasses = Array.from(userLink.classList || []).filter(c => c && c !== "user-tag__link");
-        const href = userLink.getAttribute("href") || userLink.href || "#";
-        const title = userLink.getAttribute("title") || "";
-
-        const safeTitle = title ? ` title="${escapeHTML(title)}"` : "";
-        const safeName = escapeHTML(nameText);
-
-        return `<address class="user-tag" style="${wrapperStyle}">` +
-               `<a href="${escapeHTML(href)}"${safeTitle} class="user-tag__link ${extraClasses.join(" ")}" style="${linkStyle}">${safeName}</a>` +
-               `</address>`;
-    } catch (e) {
-        return "";
+        for (const msg of messages) {
+            parseMessage(msg);
+        }
     }
-}
 
-function parseMessage(messageNode) {
+    function addObserver(giveawayData) {
+        observer = new MutationObserver(mutations => {
+            // Micro-batch within the same callback: no rAF delay, still immediate.
+            parseAddedNodesMicroBatch(mutations);
+        });
+        startObserver();
+    }
+
+    function startObserver() {
+        const messageList = document.querySelector(".chatroom__messages");
+        if (messageList) {
+            observer.observe(messageList, { childList: true });
+        }
+    }
+
+
+    // Capture a stable user-tag HTML for the entries table.
+    // Some sites render the username via Alpine (x-text/x-show) after the node is inserted,
+    // so grabbing userTag.outerHTML too early can produce icon-only markup.
+    function escapeHTML(str) {
+        try {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        } catch {
+            return "";
+        }
+    }
+
+    // Build a user-tag that renders correctly outside of the chatbox CSS context.
+    // Using raw userTag.outerHTML can produce "icon-only" output in the entries table
+    // because some UNIT3D themes hide username text unless inside .chatbox-message.
+    // This function inlines the important styles and always injects the username text.
+    function captureFancyNameTag(messageNode, author) {
+        try {
+            const userTag = messageNode?.querySelector?.("address.user-tag, .user-tag");
+            if (!userTag) return "";
+
+            const userLink = userTag.querySelector("a.user-tag__link, a");
+            if (!userLink) return "";
+
+            const nameText = sanitizeNick(author || userLink.textContent || "").trim();
+            if (!nameText) return "";
+
+            // Preserve group icon / tag background
+            const tagStyles = getComputedStyle(userTag);
+            const bgImage = tagStyles.backgroundImage;
+            const bgRepeat = tagStyles.backgroundRepeat;
+            const bgPosition = tagStyles.backgroundPosition;
+            const bgSize = tagStyles.backgroundSize;
+
+            let backgroundStyle = "";
+            if (bgImage && bgImage !== "none") {
+                // bgImage looks like: url("...") — pull out the URL safely
+                const m = /url\(["']?(.*?)["']?\)/.exec(bgImage);
+                const url = m ? m[1] : "";
+                if (url) {
+                    backgroundStyle =
+                        `background-image: url('${url}'); ` +
+                        `background-repeat: ${bgRepeat}; ` +
+                        `background-position: ${bgPosition}; ` +
+                        `background-size: ${bgSize}; `;
+                }
+            }
+
+            // Inline link color so it renders in the entries table
+            const linkStyles = getComputedStyle(userLink);
+            const color = linkStyles.color || "";
+
+            const wrapperStyle = `${backgroundStyle} padding-left: 20px; display: inline-block;`;
+            const linkStyle = `${color ? `color: ${color}; ` : ""}font-size: inherit;`;
+
+            // Preserve classes & title for staff detection (isAdmin uses title)
+            const extraClasses = Array.from(userLink.classList || []).filter(c => c && c !== "user-tag__link");
+            const href = userLink.getAttribute("href") || userLink.href || "#";
+            const title = userLink.getAttribute("title") || "";
+
+            const safeTitle = title ? ` title="${escapeHTML(title)}"` : "";
+            const safeName = escapeHTML(nameText);
+
+            return `<address class="user-tag" style="${wrapperStyle}">` +
+                `<a href="${escapeHTML(href)}"${safeTitle} class="user-tag__link ${extraClasses.join(" ")}" style="${linkStyle}">${safeName}</a>` +
+                `</address>`;
+        } catch (e) {
+            return "";
+        }
+    }
+
+    function parseMessage(messageNode) {
         const messageContentElement = Site.getMessageContentElement(messageNode);
         if (!messageContentElement) return; // system/bot messages — skip
 
@@ -1711,9 +1710,9 @@ function parseMessage(messageNode) {
         const author = getAuthor(messageNode);
 
 
-// Pull fancyName only for relevant messages (entries/commands). We capture a stable tag that
-// always includes the username text (some sites hydrate it after insertion).
-const fancyName = captureFancyNameTag(messageNode, author);
+        // Pull fancyName only for relevant messages (entries/commands). We capture a stable tag that
+        // always includes the username text (some sites hydrate it after insertion).
+        const fancyName = captureFancyNameTag(messageNode, author);
 
 
         if (isEntry) {
@@ -1752,7 +1751,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
 
         return "";
     }
-// ───────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────
     // SECTION 8: Entry Management
     // ───────────────────────────────────────────────────────────
     function handleEntryMessage(number, author, fancyName, giveawayData) {
@@ -1948,7 +1947,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
     }
 
 
-// ───────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────
     // SECTION 9: Sponsorhip Polling and Parsing
     // ───────────────────────────────────────────────────────────
 
@@ -2095,9 +2094,9 @@ const fancyName = captureFancyNameTag(messageNode, author);
             }, {});
 
             const entries = Object.entries(grouped)
-                .map(([name, amt]) => ({ name, amt: Number(amt) || 0 }))
-                .filter(e => e.name && e.amt > 0)
-                .sort((a, b) => b.amt - a.amt);
+            .map(([name, amt]) => ({ name, amt: Number(amt) || 0 }))
+            .filter(e => e.name && e.amt > 0)
+            .sort((a, b) => b.amt - a.amt);
 
             const sponsorCount = entries.length;
             const deltaTotalNum = entries.reduce((s, e) => s + e.amt, 0);
@@ -2129,8 +2128,8 @@ const fancyName = captureFancyNameTag(messageNode, author);
             }
 
             const parts = shown.map(e =>
-                `[color=#1DDC5D][b]${e.name}[/b][/color] ` +
-                `([color=#DC3D1D][b]${e.amt.toLocaleString()}[/b][/color])`
+                                    `[color=#1DDC5D][b]${e.name}[/b][/color] ` +
+                                    `([color=#DC3D1D][b]${e.amt.toLocaleString()}[/b][/color])`
             );
 
             const othersCount = Math.max(0, sponsorCount - shown.length);
@@ -2232,7 +2231,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
         return true;
     }
 
-/** Rate‑limit users – returns `true` when the caller must be ignored. */
+    /** Rate‑limit users – returns `true` when the caller must be ignored. */
     function applyCooldown(author, opts = {}) {
         const now = Date.now();
         const rawAuthor = String(author || "");
@@ -2255,8 +2254,8 @@ const fancyName = captureFancyNameTag(messageNode, author);
         // Per-command cooldown (prevents identical output spam)
         let repeatBlocked = false;
         const cmd = (opts && typeof opts === "object" && opts.command != null)
-            ? String(opts.command).trim().toLowerCase()
-            : "";
+        ? String(opts.command).trim().toLowerCase()
+        : "";
 
         if (cmd) {
             const cd = Number(REPEAT_COMMAND_COOLDOWNS_MS[cmd]) || 0;
@@ -2448,7 +2447,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
                                  `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
                                  `[color=#1DDC5D]${fmtBON(u.wins)}W[/color] • ` +
                                  `[color=#ffc00a]${fmtBON(u.totalWon)} BON[/color]`
-                                );
+            );
 
             sendMessage(`[b]🏆 Top winners: ${out.join(" | ")}[/b]`);
         },
@@ -2469,7 +2468,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
                                  `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
                                  `[color=#ffc00a]${fmtBON(u.totalWon)} BON[/color] • ` +
                                  `[color=#1DDC5D]${fmtBON(u.wins)}W[/color]`
-                                );
+            );
 
             sendMessage(`[b]💰 Most BON won: ${out.join(" | ")}[/b]`);
         },
@@ -2490,7 +2489,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
                                  `${i + 1}) [color=#d85e27]${safeNameForChat(u.name)}[/color] - ` +
                                  `[color=#ffc00a]${fmtBON(u.sponsoredTotal)} BON[/color] • ` +
                                  `[color=#1DDC5D]${fmtBON(u.sponsorCount)}x[/color]`
-                                );
+            );
 
             sendMessage(`[b]💸 Top all-time sponsors: ${out.join(" | ")}[/b]`);
         },
@@ -2555,9 +2554,9 @@ const fancyName = captureFancyNameTag(messageNode, author);
 
 
             const top = all
-                .filter(g => getAmt(g) > 0)
-                .sort((a, b) => (getAmt(b) - getAmt(a)) || (getEndedAt(b) - getEndedAt(a)))
-                .slice(0, n);
+            .filter(g => getAmt(g) > 0)
+            .sort((a, b) => (getAmt(b) - getAmt(a)) || (getEndedAt(b) - getEndedAt(a)))
+            .slice(0, n);
 
             if (!top.length) {
                 sendMessage("[b]No giveaway history saved yet.[/b]");
@@ -2824,7 +2823,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
         },
 
         winners(ctx) {
-            const {author, fancyName, args, giveawayData} = ctx;
+            const { author, fancyName, args, giveawayData } = ctx;
             if (!isHostOrAdmin(author, fancyName, giveawayData.host)) return;
             const newCount = parseInt(ctx.args[0], 10);
             if (isNaN(newCount) || newCount < 1 || newCount > MAX_WINNERS) {
@@ -2840,7 +2839,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
         removetime: hostAdjustTime(-1),
 
         naughty(ctx) {
-            const {author, fancyName, args, giveawayData} = ctx;
+            const { author, fancyName, args, giveawayData } = ctx;
             if (!isHostOrAdmin(author, fancyName, giveawayData.host)) return;
 
             const sub = (args.shift() || "").toLowerCase();
@@ -2901,7 +2900,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
                 case "list":
                     sendMessage(naughtySet.size
                                 ? `[color=#FFDE59]Naughty list: [b]${fmtUserList([...naughtySet])}[/b][/color]`
-                                : "Naughty list is empty.");
+                        : "Naughty list is empty.");
                     break;
 
                 default:
@@ -2911,7 +2910,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
 
 
         end(ctx) {
-            const {author, fancyName, args, giveawayData} = ctx;
+            const { author, fancyName, args, giveawayData } = ctx;
             // If host, always allow
             if (author === giveawayData.host) {
                 endGiveaway();
@@ -3057,7 +3056,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
         try {
             startButton.disabled = true;
             startButton.onclick = null; // prevent double-click / queued clicks from re-ending
-        } catch {}
+        } catch { }
 
         if (giveawayData.countdownTimerID) {
             clearInterval(giveawayData.countdownTimerID);
@@ -3086,16 +3085,16 @@ const fancyName = captureFancyNameTag(messageNode, author);
                 ]));
 
                 const safe = sponsorNames
-                    .map(name => ({
-                        name,
-                        amount: giveawayData.sponsorContribs?.[name] || 0
-                    }))
-                    .sort((a, b) =>
-                        (b.amount - a.amount) ||
-                        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-                    )
-                    .map(({ name, amount }) =>
-                        `[color=#1DDC5D][b]${sanitizeNick(name)}[/b][/color] ([color=#ffc00a][b]${amount.toLocaleString()} BON[/b][/color])`
+                .map(name => ({
+                    name,
+                    amount: giveawayData.sponsorContribs?.[name] || 0
+                }))
+                .sort((a, b) =>
+                      (b.amount - a.amount) ||
+                      a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+                     )
+                .map(({ name, amount }) =>
+                     `[color=#1DDC5D][b]${sanitizeNick(name)}[/b][/color] ([color=#ffc00a][b]${amount.toLocaleString()} BON[/b][/color])`
                     );
 
                 const sponsorsMessage = `Thank you to all the sponsors! 🥳 ` + safe.join(", ");
@@ -3107,7 +3106,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
             .map(([author, guess], idx) => ({
                 author,
                 guess,
-                gap:   Math.abs(guess - giveawayData.winningNumber),
+                gap: Math.abs(guess - giveawayData.winningNumber),
                 order: idx
             }))
             .sort((a, b) => a.gap - b.gap || a.order - b.order);
@@ -3174,8 +3173,8 @@ const fancyName = captureFancyNameTag(messageNode, author);
                   `Congratulations to` +
                   (winners.length === 1
                    ? ` `
-                   : ` these [b][color=#5DE2E7]${winners.length} winners[/color][/b]! `
-                  );
+                    : ` these [b][color=#5DE2E7]${winners.length} winners[/color][/b]! `
+                );
 
             if (winners.length === 1) {
                 // single‐winner public message
@@ -3688,7 +3687,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
               `There is an ongoing giveaway for ` +
               `[b][color=#ffc00a]${Number(cleanPotString(giveawayData.amount)).toLocaleString()} BON[/color][/b]. ` +
               `Up to [b][color=#5DE2E7]${giveawayData.winnersNum} ${giveawayData.winnersNum === 1 ? 'winner' : 'winners'}[/color][/b] will be selected. ` +
-              `Time left: [b][color=#1DDC5D]${parseTime(giveawayData.timeLeft*1000)}[/color][/b]. ` +
+              `Time left: [b][color=#1DDC5D]${parseTime(giveawayData.timeLeft * 1000)}[/color][/b]. ` +
               `To enter, submit a whole number [b]between [color=#DC3D1D]${giveawayData.startNum} and ${giveawayData.endNum}[/color] inclusive.[/b] ` +
               `[b][color=#5DE2E7]${giveawayData.customMessage} [/color][/b]\n` +
               `✨[b][color=#FB4F4F]Gifting BON to the host will add to the pot![/color][/b]✨` +
@@ -3740,7 +3739,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
         if (!csrfToken || !giftUrl) {
             const fallbackCmd = safeMessage
             ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
-            : `/gift ${safeRecipient} ${safeAmount}`;
+                : `/gift ${safeRecipient} ${safeAmount}`;
             sendMessage(fallbackCmd);
             return;
         }
@@ -3761,19 +3760,19 @@ const fancyName = captureFancyNameTag(messageNode, author);
                 if (!resp || resp.status >= 400) {
                     const fallbackCmd = safeMessage
                     ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
-                    : `/gift ${safeRecipient} ${safeAmount}`;
+                        : `/gift ${safeRecipient} ${safeAmount}`;
                     sendMessage(fallbackCmd);
                 }
             }).catch(function () {
                 const fallbackCmd = safeMessage
                 ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
-                : `/gift ${safeRecipient} ${safeAmount}`;
+                    : `/gift ${safeRecipient} ${safeAmount}`;
                 sendMessage(fallbackCmd);
             });
         } catch (e) {
             const fallbackCmd = safeMessage
             ? `/gift ${safeRecipient} ${safeAmount} ${safeMessage}`
-            : `/gift ${safeRecipient} ${safeAmount}`;
+                : `/gift ${safeRecipient} ${safeAmount}`;
             sendMessage(fallbackCmd);
         }
     }
@@ -3874,7 +3873,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
         }
     }
 
-    function countdownTimer (display, giveawayData) {
+    function countdownTimer(display, giveawayData) {
         display.hidden = false;
 
         const timerID = setInterval(() => {
@@ -4058,7 +4057,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
             const fresh = defaultGiveawayStats();
             // Seed both so they stay in sync from day 1
             if (typeof GM_setValue === "function") GM_setValue(STATS_KEY_GM, fresh);
-            try { localStorage.setItem(STATS_KEY_LS, JSON.stringify(fresh)); } catch {}
+            try { localStorage.setItem(STATS_KEY_LS, JSON.stringify(fresh)); } catch { }
             return fresh;
         }
 
@@ -4073,7 +4072,7 @@ const fancyName = captureFancyNameTag(messageNode, author);
                 if (typeof GM_setValue === "function") GM_setValue(STATS_KEY_GM, best);
             }
             if (!lsObj || lsUpdated < safeGetUpdatedAt(best)) {
-                try { localStorage.setItem(STATS_KEY_LS, JSON.stringify(best)); } catch {}
+                try { localStorage.setItem(STATS_KEY_LS, JSON.stringify(best)); } catch { }
             }
             return best;
         }
@@ -4346,33 +4345,33 @@ const fancyName = captureFancyNameTag(messageNode, author);
     }
 
 
-// Fun denial message when non-hosts try to use !rig / !unrig (rate-limited per user)
-function maybeSendRigDeny(author, safeAuthor, action) {
-    const now = Date.now();
-    const nextOk = rigDenyCooldown.get(author) || 0;
-    if (now < nextOk) return;
-    rigDenyCooldown.set(author, now + RIG_DENY_COOLDOWN_MS);
+    // Fun denial message when non-hosts try to use !rig / !unrig (rate-limited per user)
+    function maybeSendRigDeny(author, safeAuthor, action) {
+        const now = Date.now();
+        const nextOk = rigDenyCooldown.get(author) || 0;
+        if (now < nextOk) return;
+        rigDenyCooldown.set(author, now + RIG_DENY_COOLDOWN_MS);
 
-    const who = `[color=#d85e27]${safeAuthor}[/color]`;
+        const who = `[color=#d85e27]${safeAuthor}[/color]`;
 
-    const linesRig = [
-        `🛑 Nice try ${who}. The Rigging Lever™ is behind host-only glass.`,
-        `🚨 Unauthorized rig attempt by ${who}. Deploying the Fairness Police…`,
-        `${who} tried to rig the giveaway. The universe said: “lol, no.”`,
-        `Sorry ${who} — only the host has a license to operate the Rig-O-Matic™.`
-    ];
+        const linesRig = [
+            `🛑 Nice try ${who}. The Rigging Lever™ is behind host-only glass.`,
+            `🚨 Unauthorized rig attempt by ${who}. Deploying the Fairness Police…`,
+            `${who} tried to rig the giveaway. The universe said: “lol, no.”`,
+            `Sorry ${who} — only the host has a license to operate the Rig-O-Matic™.`
+        ];
 
-    const linesUnrig = [
-        `Hold up ${who}… you can’t unrig what you never rigged.`,
-        `🚫 Access denied, ${who}. The “Unrig” button is guarded by a tiny, angry moderator.`,
-        `Nice try ${who}. Only the host can turn off the Chaos Generator™.`,
-        `${who} reached for the unrig switch… and touched nothing but air.`
-    ];
+        const linesUnrig = [
+            `Hold up ${who}… you can’t unrig what you never rigged.`,
+            `🚫 Access denied, ${who}. The “Unrig” button is guarded by a tiny, angry moderator.`,
+            `Nice try ${who}. Only the host can turn off the Chaos Generator™.`,
+            `${who} reached for the unrig switch… and touched nothing but air.`
+        ];
 
-    const pool = (action === "unrig") ? linesUnrig : linesRig;
-    const msg = pool[Math.floor(Math.random() * pool.length)];
-    sendMessage(msg);
-}
+        const pool = (action === "unrig") ? linesUnrig : linesRig;
+        const msg = pool[Math.floor(Math.random() * pool.length)];
+        sendMessage(msg);
+    }
 
     function updateRigToggleUI() {
         if (!rigToggleInput) return;
@@ -4403,10 +4402,10 @@ function maybeSendRigDeny(author, safeAuthor, action) {
         }
     }
 
-    function ordinal(n){
+    function ordinal(n) {
         const rem100 = n % 100;
         if (rem100 >= 11 && rem100 <= 13) return `${n}th`;
-        switch (n % 10){
+        switch (n % 10) {
             case 1: return `${n}st`;
             case 2: return `${n}nd`;
             case 3: return `${n}rd`;
@@ -4421,8 +4420,8 @@ function maybeSendRigDeny(author, safeAuthor, action) {
 
         // Unique + sorted taken list
         const taken = Array.from(new Set(numberEntries.values()))
-            .filter(n => Number.isFinite(n))
-            .sort((a, b) => a - b);
+        .filter(n => Number.isFinite(n))
+        .sort((a, b) => a - b);
 
         let bestLen = 0;
         let bestPick = null;
@@ -4479,7 +4478,7 @@ function maybeSendRigDeny(author, safeAuthor, action) {
     }
 
 
-    function totalMinutes () {
+    function totalMinutes() {
         const t = parseFloat(timerInput.value);
         return isNaN(t) || t <= 0 ? 0 : t;
     }
@@ -4512,7 +4511,7 @@ function maybeSendRigDeny(author, safeAuthor, action) {
     function getReminderSchedule(totalMinutes, numReminders) {
         if (numReminders < 1) return [];
         const interval = totalMinutes / (numReminders + 1);
-        return Array.from({length: numReminders}, (_,i) =>
+        return Array.from({ length: numReminders }, (_, i) =>
                           Math.round((totalMinutes - (i + 1) * interval) * 60_000)
                          );
     }
@@ -4552,7 +4551,7 @@ function maybeSendRigDeny(author, safeAuthor, action) {
         // Show interval in "Every" field
         if (Number(remNumInput.value) > 0) {
             const interval = totMin / (Number(remNumInput.value) + 1);
-            reminderEvery.value = interval.toFixed(2).replace(/\.00$/,"") + " min";
+            reminderEvery.value = interval.toFixed(2).replace(/\.00$/, "") + " min";
         } else {
             reminderEvery.value = "–";
         }
@@ -4773,7 +4772,7 @@ function maybeSendRigDeny(author, safeAuthor, action) {
         commandsMenu.style.display = 'none'; // keep it hidden
     }
 
-    function hardCloseSettings () {
+    function hardCloseSettings() {
         settingsMenu.classList.remove('open');
         settingsMenu.style.display = 'none';
         document.removeEventListener('click', handleOutsideClick);
