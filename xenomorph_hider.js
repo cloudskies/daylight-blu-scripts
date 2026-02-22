@@ -14,10 +14,8 @@
     const style = document.createElement('style');
     style.id = 'bothider-custom-css';
     style.innerHTML = `
-        /* Generic hide class */
         .bh-inactive { display: none !important; }
 
-        /* UI Styling for the toggle */
         #bothider-wrap { display: flex; align-items: center; padding: 0 10px; border-right: 1px solid rgba(255,255,255,0.1); height: 100%; }
         .bh-toggle { display: flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; }
         .bh-toggle input { cursor: pointer; margin: 0; }
