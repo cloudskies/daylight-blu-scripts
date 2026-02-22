@@ -7,12 +7,17 @@ Scripts I use for Blutopia. Some are forked from the forums to fix or improve fe
 Adds custom keyboard shortcuts (like PTP).
 
 Currently:
+
 S - IMDb
+
 L - Letterboxd
+
 M - TMDb
+
 X - Blu-ray.com
 
 D - NZBGeek search
+
 T - YouTube trailer search
 
 E - Edit torrent (needs perms)
